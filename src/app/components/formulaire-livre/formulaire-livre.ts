@@ -1,0 +1,73 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from
+'@angular/forms';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { LivreService } from '../../services/livre';
+import { Livre } from '../../models/livre.model';
+
+
+@Component({
+standalone: true,
+imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  templateUrl: './formulaire-livre.html',
+  styleUrl: './formulaire-livre.css',
+})
+
+export class FormulaireLivre {
+
+  livreForm!: FormGroup;
+  isModification: boolean = false;
+  livreId: string | null = null;
+  constructor(
+  private fb: FormBuilder,
+  private livreService: LivreService,
+  private router: Router,
+  private route: ActivatedRoute
+  ) {}
+  ngOnInit(): void {
+  // Initialisation du formulaire avec ses validateurs
+  this.livreForm = this.fb.group({
+  titre: ['', [Validators.required, Validators.minLength(2)]],
+  auteur: ['', [Validators.required, Validators.minLength(3)]],
+  annee: ['', [Validators.required, Validators.min(1800),
+  Validators.max(2030)]],
+  disponible: [true]
+  });
+  // Si un id est présent dans l'URL → mode modification
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+  this.isModification = true;
+  this.livreId = id;
+  this.livreService.getLivreById(this.livreId).subscribe(livre => {
+  this.livreForm.patchValue(livre); // pré-remplissage du formulaire
+  });
+  }
+  }
+
+  retourMenu(): void {
+    this.router.navigate(['/livres']).then(() => {
+      window.location.reload();
+    });
+  ;
+  }
+
+  onSubmit(): void {
+  if (this.livreForm.invalid) return;
+  const livre: Livre = this.livreForm.value;
+  if (this.isModification && this.livreId) {
+  this.livreService.modifierLivre(this.livreId, livre).subscribe(() => {
+  this.router.navigate(['/livres']).then(() => {
+    window.location.reload();
+  });
+  });
+  } else {
+  this.livreService.ajouterLivre(livre).subscribe(() => {
+  this.router.navigate(['/livres']).then(() => {
+    window.location.reload();
+  });
+  });
+  }
+  }
+
+}
