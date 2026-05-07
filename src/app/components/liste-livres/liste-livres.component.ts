@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Livre } from '../../models/livre.model';
 import { LivreService } from '../../services/livre';
+import { AnneeDepuisPipe } from '../../annees-depuis-pipe'
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // pour [(ngModel)]
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-liste-livres',
   standalone: true,
-  imports: [CommonModule, FormsModule], // pour ngFor
+  imports: [CommonModule, FormsModule, AnneeDepuisPipe],
   templateUrl: './liste-livres.component.html',
   styleUrl: './liste-livres.css',
 })

@@ -14,7 +14,8 @@ placeholder="Rechercher par titre ou auteur..." />
 'indisponible': !livre.disponible
 }">
   <h3>{{ livre.titre }}</h3>
-  <p>{{ livre.auteur }} — {{ livre.annee }}</p>
+  <p>{{ livre.auteur }}</p>
+  <p class="annee-info">{{ livre.annee | anneeDepuis }}</p>
   <span [class]="livre.disponible ? 'dispo' : 'indispo'" [ngStyle]="{
 color: livre.disponible ? 'green' : 'red',
 fontWeight: 'bold'
