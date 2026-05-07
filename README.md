@@ -18,11 +18,13 @@ Cette application web permet de gérer le catalogue d’une bibliothèque munici
 - Ouvrir : http://localhost:4200
 
 ## Fonctionnalités réalisées
+- Ajouter une barre de navigation
 - Consulter la liste des livres disponibles
-- Ajouter, modifier et supprimer un livre (CRUD complet)
+- Consulter, Ajouter, modifier et supprimer un livre (CRUD complet)
 - Rechercher un livre par titre ou par auteur
 - Naviguer entre les différentes sections de l'application
 - Remplir un formulaire d'ajout avec validation des données
+- Utiliser un API Json
 
 ## Bonus réalisés
 - ...
