@@ -10,8 +10,6 @@ Cette application web permet de gérer le catalogue d’une bibliothèque munici
 - Node.js v18+
 - npm install -g @angular/cli
 - npm install -g json-server
-- ng new bibliotheque --standalone --routing --style=css
-- cd bibliotheque
 
 ## Lancer le projet
 - npm install  
