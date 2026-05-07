@@ -27,4 +27,4 @@ Cette application web permet de gérer le catalogue d’une bibliothèque munici
 - Utiliser un API Json
 
 ## Bonus réalisés
-- ...
+- Ajouter Pipe personnalisé « Années depuis »
